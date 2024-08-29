@@ -28,12 +28,13 @@ status_code_counts = {
     '500': 0
 }
 
+
 def print_stats():
     """
     Prints the current statistics:
     - Total file size of all processed log entries.
     - Count of occurrences for each HTTP status code.
-    
+
     Only status codes with a count greater than 0 are printed.
     """
     print(f"File size: {total_file_size}")
@@ -41,20 +42,21 @@ def print_stats():
         if status_code_counts[code] > 0:
             print(f"{code}: {status_code_counts[code]}")
 
+
 def signal_handler(sig, frame):
     """
     Signal handler function to handle keyboard interruption (Ctrl+C).
-    
     When a SIGINT (Ctrl+C) signal is received:
     - Prints the current statistics.
     - Exits the program gracefully with status code 0.
-    
+
     Parameters:
     - sig (int): The signal number.
     - frame (frame object): The current stack frame.
     """
     print_stats()
     sys.exit(0)
+
 
 # Set up the signal handler for SIGINT (Ctrl+C)
 signal.signal(signal.SIGINT, signal_handler)
